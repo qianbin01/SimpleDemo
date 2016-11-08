@@ -42,12 +42,13 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 
     @Override
     public MusicViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.music_item, parent,false);
+        View view = mInflater.inflate(R.layout.music_item, parent, false);
         return new MusicViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MusicViewHolder holder, final int position) {
+
         MusicBean musicBean = mList.get(position);
         if (musicBean == null) {
             return;

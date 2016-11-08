@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.qb.simpledemo.R;
 import com.qb.simpledemo.adapter.MusicAdapter;
@@ -30,7 +33,12 @@ public class IMusicFragment extends Fragment implements IMusicView {
     SwipeRefreshLayout mSwipeRefreshLayout;
     @Bind(R.id.recycle_view)
     RecyclerView mRecyclerView;
-
+    @Bind(R.id.btnSearch)
+    Button btnSearch;
+    @Bind(R.id.etSearch)
+    EditText etSearch;
+    @Bind(R.id.rlSearch)
+    RelativeLayout rlSearch;
     private LinearLayoutManager mLayoutManager;
     private MusicAdapter mAdapter;
     private List<MusicBean> mList;
@@ -79,7 +87,6 @@ public class IMusicFragment extends Fragment implements IMusicView {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private int lastVisibleItem;
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -89,6 +96,9 @@ public class IMusicFragment extends Fragment implements IMusicView {
                     Snackbar.make(getActivity().findViewById(R.id.drawer_layout), "正在加载", Snackbar.LENGTH_SHORT).show();
                     count += 3;
                     mPresenter.OnLoadMusic(q, start, count);
+                }
+                if(mLayoutManager.findFirstVisibleItemPosition()==0){
+                    rlSearch.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -100,6 +110,7 @@ public class IMusicFragment extends Fragment implements IMusicView {
                 if (isSignificantDelta) {
                     if (dy > 0) {//判断上下滑
                         ADD_FLAG = ADD_BOTTOM;
+                        rlSearch.setVisibility(View.GONE);
                     } else {
                         ADD_FLAG = ADD_HEAD;
                     }
@@ -115,14 +126,21 @@ public class IMusicFragment extends Fragment implements IMusicView {
                 title = mList.get(position).getTitle();
                 image = mList.get(position).getImage();
                 content = mList.get(position).getMobile_link();
-                Intent intent=new Intent(getActivity(),IMusicDetailActivity.class);
-                intent.putExtra("title",title);
-                intent.putExtra("image",image);
-                intent.putExtra("content",content);
+                Intent intent = new Intent(getActivity(), IMusicDetailActivity.class);
+                intent.putExtra("title", title);
+                intent.putExtra("image", image);
+                intent.putExtra("content", content);
                 getActivity().startActivity(intent);
             }
         });
-        mPresenter.OnLoadMusic(q, start, count);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                q = etSearch.getText().toString();
+                mPresenter.OnLoadMusic(q, start, count);
+            }
+        });
+        mPresenter.OnLoadMusic(q,start,count);
     }
 
     @Override
