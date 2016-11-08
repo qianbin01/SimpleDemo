@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SimpleDemo</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="movie">电影</string>
+    <string name="image">图片</string>
+    <string name="music">音乐</string>
+    <string name="about">相关</string>
+    <string name="name">Simple</string>
+    <string name="setting">设置</string>
+</resources>

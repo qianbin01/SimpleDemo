@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".main.widget.MainActivity">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_movies"
+            android:checked="true"
+            android:icon="@drawable/movie"
+            android:title="@string/movie" />
+        <item
+            android:id="@+id/navigation_item_images"
+            android:icon="@drawable/image"
+            android:title="@string/image" />
+        <item
+            android:id="@+id/navigation_item_videos"
+            android:icon="@drawable/music"
+            android:title="@string/music" />
+
+        <item
+            android:id="@+id/navigation_item_about"
+            android:icon="@drawable/about"
+            android:title="@string/about" />
+    </group>
+</menu>
