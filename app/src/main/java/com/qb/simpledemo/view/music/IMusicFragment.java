@@ -3,6 +3,8 @@ package com.qb.simpledemo.view.music;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -87,6 +89,7 @@ public class IMusicFragment extends Fragment implements IMusicView {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private int lastVisibleItem;
+
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -97,7 +100,7 @@ public class IMusicFragment extends Fragment implements IMusicView {
                     count += 3;
                     mPresenter.OnLoadMusic(q, start, count);
                 }
-                if(mLayoutManager.findFirstVisibleItemPosition()==0){
+                if (mLayoutManager.findFirstVisibleItemPosition() == 0) {
                     rlSearch.setVisibility(View.VISIBLE);
                 }
             }
@@ -130,7 +133,11 @@ public class IMusicFragment extends Fragment implements IMusicView {
                 intent.putExtra("title", title);
                 intent.putExtra("image", image);
                 intent.putExtra("content", content);
-                getActivity().startActivity(intent);
+                View tranView = v.findViewById(R.id.ivImage);
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                tranView, "transtion_view");
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
         });
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +147,7 @@ public class IMusicFragment extends Fragment implements IMusicView {
                 mPresenter.OnLoadMusic(q, start, count);
             }
         });
-        mPresenter.OnLoadMusic(q,start,count);
+        mPresenter.OnLoadMusic(q, start, count);
     }
 
     @Override

@@ -46,12 +46,22 @@
             android:layout_marginTop="5dp"
             android:textColor="#212121" />
 
+        <TextView
+            android:id="@+id/tvName"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/tvYear"
+            android:layout_above="@id/tvGenres"
+            android:layout_marginTop="5dp"
+            android:textColor="#212121" />
 
         <ImageView
             android:id="@+id/ivImage"
             android:layout_width="250dp"
             android:layout_height="400dp"
-            android:layout_above="@id/tvYear"
+            android:layout_above="@id/tvName"
             android:layout_below="@id/tvTitle"
             android:scaleType="centerCrop" />
 

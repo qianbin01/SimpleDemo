@@ -55,16 +55,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         for (int i = 0; i < subject.getGenres().size(); i++) {
             genres += " " + subject.getGenres().get(i);
         }
+        String name="";
+        for(int i=0;i<subject.getCasts().size();i++){
+            name+=" "+subject.getCasts().get(i).getName();
+        }
         holder.tvTitle.setText(subject.getTitle());
         holder.tvRating.setText(subject.getRats().getAverage());
         holder.tvYear.setText(subject.getYear());
         holder.tvGenres.setText(genres);
+        holder.tvName.setText(name);
+        System.out.println(subject.getId());
         Picasso.with(mContext).load(subject.getImages().getLarge()).noFade().into(holder.ivImage);
         holder.ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onItemClickListener.onItemClick(view, position);
-                System.out.println(subject.getAlt());
             }
         });
     }
@@ -75,7 +80,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
     }
 
     class MovieHolder extends RecyclerView.ViewHolder {
-        private TextView tvTitle, tvYear, tvRating, tvGenres;
+        private TextView tvTitle, tvYear, tvRating, tvGenres,tvName;
         private ImageView ivImage;
 
         MovieHolder(View itemView) {
@@ -85,6 +90,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
             tvYear = (TextView) itemView.findViewById(R.id.tvYear);
             tvRating = (TextView) itemView.findViewById(R.id.tvRating);
             tvGenres = (TextView) itemView.findViewById(R.id.tvGenres);
+            tvName= (TextView) itemView.findViewById(R.id.tvName);
         }
     }
 }

@@ -23,8 +23,6 @@ public class IMovieFragmentList extends Fragment {
     public static final int MOVIE_TYPE_TOP = 0;
     public static final int MOVIE_TYPE_KOUBEI = 1;
     public static final int MOVIE_TYPE_NORTH = 2;
-    public static final int MOVIE_TYPE_NEW = 3;
-
     @Bind(R.id.tab_layout)
     TabLayout mTablayout;
     @Bind(R.id.viewpager)
@@ -36,9 +34,8 @@ public class IMovieFragmentList extends Fragment {
         ButterKnife.bind(this, view);
         setupViewPager(mViewPager);
         mTablayout.addTab(mTablayout.newTab().setText("top250"));
-        mTablayout.addTab(mTablayout.newTab().setText("口碑榜"));
-        mTablayout.addTab(mTablayout.newTab().setText("北美榜"));
-        mTablayout.addTab(mTablayout.newTab().setText("新片榜"));
+        mTablayout.addTab(mTablayout.newTab().setText("正在热映"));
+        mTablayout.addTab(mTablayout.newTab().setText("即将上映"));
         mTablayout.setupWithViewPager(mViewPager);
         return view;
     }
@@ -47,9 +44,8 @@ public class IMovieFragmentList extends Fragment {
         //Fragment中嵌套使用Fragment一定要使用getChildFragmentManager(),否则会有问题
         MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
         adapter.addFragment(IMovieFragment.newInstance(MOVIE_TYPE_TOP), "top250");
-        adapter.addFragment(IMovieFragment.newInstance(MOVIE_TYPE_KOUBEI), "口碑榜");
-        adapter.addFragment(IMovieFragment.newInstance(MOVIE_TYPE_NORTH), "北美榜");
-        adapter.addFragment(IMovieFragment.newInstance(MOVIE_TYPE_NEW), "新片榜");
+        adapter.addFragment(IMovieFragment.newInstance(MOVIE_TYPE_KOUBEI), "正在热映");
+        adapter.addFragment(IMovieFragment.newInstance(MOVIE_TYPE_NORTH), "即将上映");
         mViewPager.setAdapter(adapter);
     }
 

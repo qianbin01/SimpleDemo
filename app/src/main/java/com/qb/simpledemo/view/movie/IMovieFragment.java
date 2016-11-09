@@ -1,8 +1,11 @@
 package com.qb.simpledemo.view.movie;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,6 +21,7 @@ import com.qb.simpledemo.adapter.MovieAdapter;
 import com.qb.simpledemo.bean.movie.Subject;
 import com.qb.simpledemo.presenter.movie.IMoviePresenter;
 import com.qb.simpledemo.presenter.movie.IMoviePresenterImpl;
+import com.qb.simpledemo.view.music.IMusicDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,7 +124,19 @@ public class IMovieFragment extends Fragment implements IMovieView {
         mAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Toast.makeText(getActivity(), "点击事件", Toast.LENGTH_SHORT).show();
+                String title, image, content;
+                title = mList.get(position).getTitle();
+                image = mList.get(position).getImages().getLarge();
+                content = mList.get(position).getAlt()+"/mobile";
+                Intent intent = new Intent(getActivity(), IMovieDetailActivity.class);
+                intent.putExtra("title", title);
+                intent.putExtra("image", image);
+                intent.putExtra("content", content);
+                View tranView = v.findViewById(R.id.ivImage);
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                tranView, "transtion_view");
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
         });
     }

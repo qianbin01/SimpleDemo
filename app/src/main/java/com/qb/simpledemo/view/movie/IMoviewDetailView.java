@@ -1,7 +1,7 @@
-package com.qb.simpledemo.view.music;
+package com.qb.simpledemo.view.movie;
 
 
-public interface IMusicDetaView {
+public interface IMoviewDetailView {
     void showMusicDetail();
 
     void showProgress();

@@ -1,9 +1,12 @@
 package com.qb.simpledemo.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +59,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     }
 
     @Override
-    public void onBindViewHolder(ImageViewHolder holder, final int position) {
+    public void onBindViewHolder(final ImageViewHolder holder, final int position) {
         final ImageBean imageBean = mList.get(position);
         if (imageBean == null) {
             return;
@@ -78,7 +81,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 bundle.putString("pic", imageBean.getThumburl());
                 Intent intent = new Intent(mContext, ZoomImageActivity.class);
                 intent.putExtras(bundle);
-                mContext.startActivity(intent);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, holder.ivImage, "watch_image");
+                ActivityCompat.startActivity((Activity) mContext,intent,options.toBundle());
             }
         });
         Picasso.with(mContext).load(imageBean.getThumburl()).into(holder.ivImage);

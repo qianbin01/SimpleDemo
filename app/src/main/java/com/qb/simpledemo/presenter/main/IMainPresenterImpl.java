@@ -20,8 +20,8 @@ public class IMainPresenterImpl implements IMainPresenter {
             case R.id.navigation_item_images:
                 mView.switch2Images();
                 break;
-            case R.id.navigation_item_videos:
-                mView.switch2Video();
+            case R.id.navigation_item_musics:
+                mView.switch2Music();
                 break;
             case R.id.navigation_item_about:
                 mView.switch2About();

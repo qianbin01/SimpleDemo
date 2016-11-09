@@ -13,7 +13,7 @@
             android:icon="@drawable/image"
             android:title="@string/image" />
         <item
-            android:id="@+id/navigation_item_videos"
+            android:id="@+id/navigation_item_musics"
             android:icon="@drawable/music"
             android:title="@string/music" />
 

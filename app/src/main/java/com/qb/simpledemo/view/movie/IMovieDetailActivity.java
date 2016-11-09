@@ -1,4 +1,4 @@
-package com.qb.simpledemo.view.music;
+package com.qb.simpledemo.view.movie;
 
 
 import android.os.Bundle;
@@ -12,14 +12,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.qb.simpledemo.R;
-import com.qb.simpledemo.presenter.music.IMusicDetailPresenter;
-import com.qb.simpledemo.presenter.music.IMusicDetailPresenterImpl;
+import com.qb.simpledemo.presenter.movie.IMovieDetailPresenter;
+import com.qb.simpledemo.presenter.movie.IMovieDetailPresenterImpl;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class IMusicDetailActivity extends AppCompatActivity implements IMusicDetailView {
+public class IMovieDetailActivity extends AppCompatActivity implements IMoviewDetailView {
 
     @Bind(R.id.progress)
     ProgressBar mProgressBar;
@@ -33,7 +33,7 @@ public class IMusicDetailActivity extends AppCompatActivity implements IMusicDet
     @Bind(R.id.WebView)
     WebView webView;
     private String title, image, content;
-    private IMusicDetailPresenter mPresenter;
+    private IMovieDetailPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class IMusicDetailActivity extends AppCompatActivity implements IMusicDet
         content = getIntent().getStringExtra("content");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mPresenter = new IMusicDetailPresenterImpl(this);
+        mPresenter = new IMovieDetailPresenterImpl(this);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

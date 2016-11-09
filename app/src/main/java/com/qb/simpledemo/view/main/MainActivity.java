@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     }
 
     @Override
-    public void switch2Video() {
+    public void switch2Music() {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new IMusicFragment()).commit();
         mToolbar.setTitle("音乐");
     }

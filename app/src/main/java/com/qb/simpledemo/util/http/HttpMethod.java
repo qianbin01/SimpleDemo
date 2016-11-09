@@ -61,13 +61,10 @@ public class HttpMethod {
                 urlType = "top250";
                 break;
             case 1:
-                urlType = "weekly";
+                urlType = "in_theaters";
                 break;
             case 2:
-                urlType = "us_box";
-                break;
-            case 3:
-                urlType = "new_movies";
+                urlType = "coming_soon";
                 break;
             default:
                 urlType = "top250";
