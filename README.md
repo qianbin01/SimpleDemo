@@ -12,5 +12,7 @@ csdn地址:http://blog.csdn.net/hold_bin?viewmode=contents
 
 github地址:https://github.com/qianbin01/SimpleDemo 欢迎多多star
 
+个人博客地址：http://qbfighting.cc
+
 原作者github:https://github.com/liuling07/SimpleNews
 
